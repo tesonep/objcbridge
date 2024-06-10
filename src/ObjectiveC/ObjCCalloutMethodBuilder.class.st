@@ -91,7 +91,7 @@ ObjCCalloutMethodBuilder >> generateFFICallout: builder spec: functionSpec [
 	| properties |
 
 	"Copy the properties of the old method"
-	sender methodProperties ifNotNil: [ 
+	(sender methodProperties isNotNil and: [sender method isCompiledMethod]) ifTrue: [ 
 		properties := sender methodProperties copy.
 		properties method: nil.
 		builder properties: properties ].

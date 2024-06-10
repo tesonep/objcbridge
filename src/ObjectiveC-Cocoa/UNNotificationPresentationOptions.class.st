@@ -47,3 +47,9 @@ UNNotificationPresentationOptions class >> enumDecl [
 		UNNotificationPresentationOptionSound 	2
 	)
 ]
+
+{ #category : #'class initialization' }
+UNNotificationPresentationOptions class >> initialize [
+
+	self initializeEnumeration
+]

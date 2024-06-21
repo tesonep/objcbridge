@@ -1,44 +1,45 @@
 Class {
-	#name : #CocoaApplication,
-	#superclass : #Object,
+	#name : 'CocoaApplication',
+	#superclass : 'Object',
 	#classVars : [
 		'Current'
 	],
 	#pools : [
 		'CocoaConstants'
 	],
-	#category : #'ObjectiveC-Cocoa'
+	#category : 'ObjectiveC-Cocoa',
+	#package : 'ObjectiveC-Cocoa'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CocoaApplication class >> current [
 	^ Current
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 CocoaApplication class >> initialize [
 	SessionManager default registerUserClassNamed: self name
 ]
 
-{ #category : #'system startup' }
+{ #category : 'system startup' }
 CocoaApplication class >> startUp: resuming [
 	resuming ifFalse: [ ^ self ].
 	Current := nil
 ]
 
-{ #category : #utils }
+{ #category : 'utils' }
 CocoaApplication class >> withAutoreleasePoolDo: aBlock [
 	| pool |
 	pool := #NSAutoreleasePool inObjC alloc init.
 	aBlock ensure: [ pool release ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CocoaApplication >> reset [
 	"Clean application"
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 CocoaApplication >> run [
 	"sub... here put main menu, etc."
 	Current ifNotNil: [ Current reset ].

@@ -1,13 +1,15 @@
 Class {
-	#name : #MacOSXWindowDelegate,
-	#superclass : #Object,
+	#name : 'MacOSXWindowDelegate',
+	#superclass : 'Object',
 	#instVars : [
 		'proxy'
 	],
-	#category : #'ObjectiveC-Cocoa-Examples'
+	#category : 'ObjectiveC-Cocoa-Examples',
+	#package : 'ObjectiveC-Cocoa',
+	#tag : 'Examples'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 MacOSXWindowDelegate class >> example [
 	"self example"
 	| NSTitledWindowMask NSClosableWindowMask
@@ -45,12 +47,12 @@ MacOSXWindowDelegate class >> example [
 	pool release
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MacOSXWindowDelegate >> proxy [
 	^ proxy
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 MacOSXWindowDelegate >> windowDidMove: notification [
 	<objCSignature: #(void (id notification))>
 	

@@ -1,40 +1,42 @@
 Class {
-	#name : #UNNotificationPresentationOptions,
-	#superclass : #FFIEnumeration,
+	#name : 'UNNotificationPresentationOptions',
+	#superclass : 'FFIEnumeration',
 	#classVars : [
 		'UNNotificationPresentationOptionBadge',
 		'UNNotificationPresentationOptionBanner',
 		'UNNotificationPresentationOptionList',
 		'UNNotificationPresentationOptionSound'
 	],
-	#category : #'ObjectiveC-Cocoa-Notifications'
+	#category : 'ObjectiveC-Cocoa-Notifications',
+	#package : 'ObjectiveC-Cocoa',
+	#tag : 'Notifications'
 }
 
-{ #category : #'accessing enum' }
+{ #category : 'accessing enum' }
 UNNotificationPresentationOptions class >> UNNotificationPresentationOptionBadge [
 	"This method was automatically generated"
 	^ UNNotificationPresentationOptionBadge
 ]
 
-{ #category : #'accessing enum' }
+{ #category : 'accessing enum' }
 UNNotificationPresentationOptions class >> UNNotificationPresentationOptionBanner [
 	"This method was automatically generated"
 	^ UNNotificationPresentationOptionBanner
 ]
 
-{ #category : #'accessing enum' }
+{ #category : 'accessing enum' }
 UNNotificationPresentationOptions class >> UNNotificationPresentationOptionList [
 	"This method was automatically generated"
 	^ UNNotificationPresentationOptionList
 ]
 
-{ #category : #'accessing enum' }
+{ #category : 'accessing enum' }
 UNNotificationPresentationOptions class >> UNNotificationPresentationOptionSound [
 	"This method was automatically generated"
 	^ UNNotificationPresentationOptionSound
 ]
 
-{ #category : #'enum declaration' }
+{ #category : 'enum declaration' }
 UNNotificationPresentationOptions class >> enumDecl [
 	"
 	self initializeEnumeration
@@ -48,7 +50,7 @@ UNNotificationPresentationOptions class >> enumDecl [
 	)
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 UNNotificationPresentationOptions class >> initialize [
 
 	self initializeEnumeration

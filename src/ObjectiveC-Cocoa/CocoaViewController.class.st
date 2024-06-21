@@ -1,25 +1,26 @@
 Class {
-	#name : #CocoaViewController,
-	#superclass : #ObjCProxyObject,
+	#name : 'CocoaViewController',
+	#superclass : 'ObjCProxyObject',
 	#pools : [
 		'CocoaConstants'
 	],
-	#category : #'ObjectiveC-Cocoa'
+	#category : 'ObjectiveC-Cocoa',
+	#package : 'ObjectiveC-Cocoa'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 CocoaViewController class >> objCSuperclassName [
 	^ 'NSViewController'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CocoaViewController >> subviewWithIdentifier: aString in: view [
 	^ self 
 		subviewWithIdentifierNSString: aString asNSString autoRelease
 		in: view
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CocoaViewController >> subviewWithIdentifierNSString: identifier in: view [
 	| subviews count traversed |
 	
@@ -39,7 +40,7 @@ CocoaViewController >> subviewWithIdentifierNSString: identifier in: view [
 	^ nil
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 CocoaViewController >> subviewWithTag: aNumber in: view [
 	^ view viewWithTag: aNumber
 ]

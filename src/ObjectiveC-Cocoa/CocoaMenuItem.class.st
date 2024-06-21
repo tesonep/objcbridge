@@ -1,6 +1,6 @@
 Class {
-	#name : #CocoaMenuItem,
-	#superclass : #Object,
+	#name : 'CocoaMenuItem',
+	#superclass : 'Object',
 	#instVars : [
 		'title',
 		'action',
@@ -10,15 +10,17 @@ Class {
 		'nsShortcut',
 		'menuItem'
 	],
-	#category : #'ObjectiveC-Cocoa-Menus'
+	#category : 'ObjectiveC-Cocoa-Menus',
+	#package : 'ObjectiveC-Cocoa',
+	#tag : 'Menus'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CocoaMenuItem >> action: aFullBlockClosure [ 
 	action := aFullBlockClosure
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 CocoaMenuItem >> addToMenu: aCocoaMenu [ 
 
 	target := CocoaMenuTarget new block: action; yourself.
@@ -33,12 +35,12 @@ CocoaMenuItem >> addToMenu: aCocoaMenu [
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CocoaMenuItem >> shortcut: aString [ 
 	shortcut := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CocoaMenuItem >> title: aString [ 
 	title := aString
 ]

@@ -1,6 +1,6 @@
 Class {
-	#name : #CocoaMenu,
-	#superclass : #Object,
+	#name : 'CocoaMenu',
+	#superclass : 'Object',
 	#instVars : [
 		'nsMenu',
 		'title',
@@ -11,16 +11,18 @@ Class {
 	#classVars : [
 		'MainMenu'
 	],
-	#category : #'ObjectiveC-Cocoa-Menus'
+	#category : 'ObjectiveC-Cocoa-Menus',
+	#package : 'ObjectiveC-Cocoa',
+	#tag : 'Menus'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 CocoaMenu >> addItemWithTitle: aString action: aFullBlockClosure [ 
 	
 	^ self addItemWithTitle: aString action: aFullBlockClosure shortcut: ''
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 CocoaMenu >> addItemWithTitle: aTitle action: actionBlock shortcut: shortcutString [ 
 	
 	items add: (CocoaMenuItem new
@@ -30,7 +32,7 @@ CocoaMenu >> addItemWithTitle: aTitle action: actionBlock shortcut: shortcutStri
 						yourself)
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 CocoaMenu >> addSubmenu: aTitle with: builderBlock [ 
 	
 	| m |
@@ -41,7 +43,7 @@ CocoaMenu >> addSubmenu: aTitle with: builderBlock [
 	^ m
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 CocoaMenu >> addToMenu: aCocoaMenu [ 
 	
 	self buildNSMenu.
@@ -52,7 +54,7 @@ CocoaMenu >> addToMenu: aCocoaMenu [
 
 ]
 
-{ #category : #building }
+{ #category : 'building' }
 CocoaMenu >> buildNSMenu [
 	
 	nsTitle := title asNSString.
@@ -63,19 +65,19 @@ CocoaMenu >> buildNSMenu [
 	^ nsMenu
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CocoaMenu >> initialize [ 
 	
 	super initialize.
 	items := OrderedCollection new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CocoaMenu >> nsMenu [
 	^ nsMenu
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CocoaMenu >> setAsMainMenu [
 	
 	self buildNSMenu.
@@ -84,7 +86,7 @@ CocoaMenu >> setAsMainMenu [
 	MainMenu := self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CocoaMenu >> title: aString [ 
 	title := aString
 ]

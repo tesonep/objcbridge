@@ -1,13 +1,14 @@
 Class {
-	#name : #CocoaWindowController,
-	#superclass : #ObjCProxyObject,
+	#name : 'CocoaWindowController',
+	#superclass : 'ObjCProxyObject',
 	#pools : [
 		'CocoaConstants'
 	],
-	#category : #'ObjectiveC-Cocoa'
+	#category : 'ObjectiveC-Cocoa',
+	#package : 'ObjectiveC-Cocoa'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 CocoaWindowController class >> objCSuperclassName [
 	^ 'NSWindowController'
 ]

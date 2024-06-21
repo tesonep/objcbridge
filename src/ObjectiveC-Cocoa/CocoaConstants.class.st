@@ -1,6 +1,6 @@
 Class {
-	#name : #CocoaConstants,
-	#superclass : #SharedPool,
+	#name : 'CocoaConstants',
+	#superclass : 'SharedPool',
 	#classVars : [
 		'NSOrderedAscending',
 		'NSOrderedDescending',
@@ -8,10 +8,11 @@ Class {
 		'NSSquareStatusItemLength',
 		'NSVariableStatusItemLength'
 	],
-	#category : #'ObjectiveC-Cocoa'
+	#category : 'ObjectiveC-Cocoa',
+	#package : 'ObjectiveC-Cocoa'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 CocoaConstants class >> initialize [
 	"NSStatusBar.h"
 	"Status item positioning length"

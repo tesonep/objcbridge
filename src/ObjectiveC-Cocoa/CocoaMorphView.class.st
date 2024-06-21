@@ -1,18 +1,19 @@
 Class {
-	#name : #CocoaMorphView,
-	#superclass : #ObjCProxyObject,
+	#name : 'CocoaMorphView',
+	#superclass : 'ObjCProxyObject',
 	#instVars : [
 		'morph'
 	],
-	#category : #'ObjectiveC-Cocoa'
+	#category : 'ObjectiveC-Cocoa',
+	#package : 'ObjectiveC-Cocoa'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 CocoaMorphView class >> objCSuperclassName [
 	^ 'NSView'
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 CocoaMorphView >> drawRect: r [
 	<objCSignature: #(void (NSRect r))>
 
@@ -37,29 +38,29 @@ CocoaMorphView >> drawRect: r [
 		self morph fullDrawOnAthensCanvas: canvas ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 CocoaMorphView >> initializeProxy [
 	self proxy init
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CocoaMorphView >> morph [
 	^ morph
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CocoaMorphView >> morph: anObject [
 	morph := anObject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CocoaMorphView >> scaleCTMCGContext: c x: sx y: sy [
 	^ self 
 		ffiCall: #(void CGContextScaleCTM("CGContextRef"void *c, double sx, double sy))
 		module: CoreGraphicsLibrary
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 CocoaMorphView >> translateCTMCGContext: c x: tx y: ty [
 	^ self 
 		ffiCall: #(void CGContextTranslateCTM("CGContextRef"void *c, double tx, double ty))	

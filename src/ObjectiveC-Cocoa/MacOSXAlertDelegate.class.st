@@ -1,13 +1,15 @@
 Class {
-	#name : #MacOSXAlertDelegate,
-	#superclass : #Object,
+	#name : 'MacOSXAlertDelegate',
+	#superclass : 'Object',
 	#instVars : [
 		'proxy'
 	],
-	#category : #'ObjectiveC-Cocoa-Examples'
+	#category : 'ObjectiveC-Cocoa-Examples',
+	#package : 'ObjectiveC-Cocoa',
+	#tag : 'Examples'
 }
 
-{ #category : #example }
+{ #category : 'example' }
 MacOSXAlertDelegate class >> example [
 	"self example"
 	| NSTitledWindowMask NSClosableWindowMask
@@ -59,7 +61,7 @@ MacOSXAlertDelegate class >> example [
 	^rc
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 MacOSXAlertDelegate class >> exampleModal [
 	"self example"
 	| app win pool alert rc |
@@ -80,7 +82,7 @@ MacOSXAlertDelegate class >> exampleModal [
 	^rc
 ]
 
-{ #category : #example }
+{ #category : 'example' }
 MacOSXAlertDelegate class >> exampleWithFunction [
 	"self example"
 	| NSTitledWindowMask NSClosableWindowMask
@@ -134,14 +136,14 @@ MacOSXAlertDelegate class >> exampleWithFunction [
 	^rc
 ]
 
-{ #category : #'event handling' }
+{ #category : 'event handling' }
 MacOSXAlertDelegate >> alertDidEnd: alert  returnCode: returnCode contextInfo: contextInfo [
 	<objCSignature: #(void (id alert, int returnCode, void* contextInfo))>
 
 	#NSApplication inObjC sharedApplication stopModalWithCode: returnCode
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 MacOSXAlertDelegate >> proxy [
 	^ proxy
 ]

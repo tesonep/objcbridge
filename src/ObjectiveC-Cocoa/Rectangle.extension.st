@@ -1,6 +1,6 @@
-Extension { #name : #Rectangle }
+Extension { #name : 'Rectangle' }
 
-{ #category : #'*ObjectiveC-Cocoa' }
+{ #category : '*ObjectiveC-Cocoa' }
 Rectangle >> asNSRect [
 	^ NSRect 
 		x: self origin x 

@@ -1,14 +1,16 @@
 Class {
-	#name : #NSPoint,
-	#superclass : #ObjCStructure,
+	#name : 'NSPoint',
+	#superclass : 'ObjCStructure',
 	#classVars : [
 		'OFFSET_X',
 		'OFFSET_Y'
 	],
-	#category : #'ObjectiveC-Cocoa-Structure'
+	#category : 'ObjectiveC-Cocoa-Structure',
+	#package : 'ObjectiveC-Cocoa',
+	#tag : 'Structure'
 }
 
-{ #category : #'field definition' }
+{ #category : 'field definition' }
 NSPoint class >> fieldsDesc [
 	^#(
    double x;
@@ -16,12 +18,12 @@ NSPoint class >> fieldsDesc [
 	)
 ]
 
-{ #category : #'field definition' }
+{ #category : 'field definition' }
 NSPoint class >> structureAliases [
 	^ #(CGPoint NSSize CGSize)
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 NSPoint class >> width: x height: y [ 
 	^ self new
 		x: x;
@@ -29,7 +31,7 @@ NSPoint class >> width: x height: y [
 		yourself. 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 NSPoint class >> x: x y: y [ 
 	^ super new
 		x: x;
@@ -37,50 +39,50 @@ NSPoint class >> x: x y: y [
 		yourself. 
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 NSPoint >> asPoint [
 	^ self x @ self y
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NSPoint >> height [
 	^ self y
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NSPoint >> height: aNumber [
 	self y: aNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NSPoint >> width [
 	^ self x
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 NSPoint >> width: aNumber [
 	self x: aNumber
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 NSPoint >> x [
 	"This method was automatically generated"
 	^handle doubleAt: OFFSET_X
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 NSPoint >> x: anObject [
 	"This method was automatically generated"
 	handle doubleAt: OFFSET_X put: anObject
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 NSPoint >> y [
 	"This method was automatically generated"
 	^handle doubleAt: OFFSET_Y
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 NSPoint >> y: anObject [
 	"This method was automatically generated"
 	handle doubleAt: OFFSET_Y put: anObject

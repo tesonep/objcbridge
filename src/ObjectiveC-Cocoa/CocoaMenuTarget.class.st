@@ -1,39 +1,41 @@
 Class {
-	#name : #CocoaMenuTarget,
-	#superclass : #Object,
+	#name : 'CocoaMenuTarget',
+	#superclass : 'Object',
 	#instVars : [
 		'proxy',
 		'block'
 	],
-	#category : #'ObjectiveC-Cocoa-Menus'
+	#category : 'ObjectiveC-Cocoa-Menus',
+	#package : 'ObjectiveC-Cocoa',
+	#tag : 'Menus'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CocoaMenuTarget >> block [
 
 	^ block
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CocoaMenuTarget >> block: anObject [
 
 	block := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CocoaMenuTarget >> execute [
 	<objCSignature: #(void ())>
 
 	block value
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CocoaMenuTarget >> proxy [
 
 	^ proxy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 CocoaMenuTarget >> proxy: anObject [
 
 	proxy := anObject

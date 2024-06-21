@@ -1,16 +1,18 @@
 Class {
-	#name : #UNNotificationCenter,
-	#superclass : #Object,
+	#name : 'UNNotificationCenter',
+	#superclass : 'Object',
 	#instVars : [
 		'delegate'
 	],
 	#classVars : [
 		'UniqueInstance'
 	],
-	#category : #'ObjectiveC-Cocoa-Notifications'
+	#category : 'ObjectiveC-Cocoa-Notifications',
+	#package : 'ObjectiveC-Cocoa',
+	#tag : 'Notifications'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 UNNotificationCenter class >> example [
 
 	<script: 'self example'>
@@ -27,19 +29,19 @@ UNNotificationCenter class >> example [
 		body: 'with a nice body'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 UNNotificationCenter class >> isAvailable [
 
 	^ #UNUserNotificationCenter inObjC isNull not
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 UNNotificationCenter class >> new [
 
 	^ self error: 'Use uniqueInstance instead'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 UNNotificationCenter class >> uniqueInstance [
 
 	UniqueInstance ifNil: [ UniqueInstance := self basicNew initialize; yourself ].
@@ -48,13 +50,13 @@ UNNotificationCenter class >> uniqueInstance [
 		yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 UNNotificationCenter >> currentNotificationCenter [
 
 	^ #UNUserNotificationCenter inObjC currentNotificationCenter
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 UNNotificationCenter >> doShowNotificationTitle: aTitle body: aBody [
 
 	| notificationContent identifier request sem completionHandler errorDescription |
@@ -89,7 +91,7 @@ UNNotificationCenter >> doShowNotificationTitle: aTitle body: aBody [
 	errorDescription ifNotNil: [ self error: errorDescription ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 UNNotificationCenter >> ensureDelegate [
 
 	self currentNotificationCenter delegate isNull ifFalse: [ ^ self ].
@@ -98,7 +100,7 @@ UNNotificationCenter >> ensureDelegate [
 	self currentNotificationCenter setDelegate: delegate
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 UNNotificationCenter >> extractErrorDescription: error [
 
 	| errorObject |
@@ -106,7 +108,7 @@ UNNotificationCenter >> extractErrorDescription: error [
 	^ errorObject localizedDescription UTF8String asByteArray utf8Decoded
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 UNNotificationCenter >> requestPermissions [
 
 	| sem hasPermissions blk center errorDescription permissions |
@@ -131,7 +133,7 @@ UNNotificationCenter >> requestPermissions [
 	hasPermissions ifFalse: [ self error: errorDescription ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 UNNotificationCenter >> showNotificationTitle: aTitle body: aBody [
 
 	self requestPermissions.

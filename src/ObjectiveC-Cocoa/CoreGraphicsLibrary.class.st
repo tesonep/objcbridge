@@ -1,10 +1,11 @@
 Class {
-	#name : #CoreGraphicsLibrary,
-	#superclass : #FFILibrary,
-	#category : #'ObjectiveC-Cocoa'
+	#name : 'CoreGraphicsLibrary',
+	#superclass : 'FFILibrary',
+	#category : 'ObjectiveC-Cocoa',
+	#package : 'ObjectiveC-Cocoa'
 }
 
-{ #category : #'accessing platform' }
+{ #category : 'accessing platform' }
 CoreGraphicsLibrary >> macModuleName [
 	^ ObjCClass frameworkLibraryNameFor: 'CoreGraphics'
 ]

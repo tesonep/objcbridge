@@ -6,6 +6,6 @@ String >> asNSString [
 	^ self
 		  ifNotEmpty: [
 			  #NSString inObjC alloc
-				  initWithUTF8String: self utf8Encoded asString]
+				  initWithUTF8String: (self utf8Encoded copyWith:0)]
 		  ifEmpty: [ #NSString inObjC string ]
 ]

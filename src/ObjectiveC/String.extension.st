@@ -1,17 +1,17 @@
-Extension { #name : #String }
+Extension { #name : 'String' }
 
-{ #category : #'*ObjectiveC' }
+{ #category : '*ObjectiveC' }
 String >> adaptToObjC [
 
 	^ self utf8Encoded 		
 ]
 
-{ #category : #'*ObjectiveC' }
+{ #category : '*ObjectiveC' }
 String >> inObjC [
 	^ ObjCClass lookup: self asString
 ]
 
-{ #category : #'*ObjectiveC' }
+{ #category : '*ObjectiveC' }
 String >> inObjCFramework: frameworkName [
 	^ ObjCClass lookup: self inFramework: frameworkName
 ]

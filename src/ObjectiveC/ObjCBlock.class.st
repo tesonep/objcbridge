@@ -1,16 +1,18 @@
 Class {
-	#name : #ObjCBlock,
-	#superclass : #FFIExternalObject,
+	#name : 'ObjCBlock',
+	#superclass : 'FFIExternalObject',
 	#instVars : [
 		'block',
 		'callback',
 		'blockStruct',
 		'blockDescriptor'
 	],
-	#category : #'ObjectiveC-Core'
+	#category : 'ObjectiveC-Core',
+	#package : 'ObjectiveC',
+	#tag : 'Core'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ObjCBlock class >> signature: aSignature block: aBlock [ 
 	
 	^ self new
@@ -18,7 +20,7 @@ ObjCBlock class >> signature: aSignature block: aBlock [
 		yourself
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ObjCBlock >> signature: aSignature block: aBlock [ 
 	
 	block := aBlock.

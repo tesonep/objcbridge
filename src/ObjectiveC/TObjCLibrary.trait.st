@@ -2,26 +2,28 @@
 I define a class as part of the ObjC infrastructure.
 "
 Trait {
-	#name : #TObjCLibrary,
-	#category : #'ObjectiveC-Core'
+	#name : 'TObjCLibrary',
+	#category : 'ObjectiveC-Core',
+	#package : 'ObjectiveC',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TObjCLibrary classSide >> ffiBindingOf: aName [
 	^ ObjCLibrary ffiBindingOf: aName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TObjCLibrary classSide >> ffiLibraryName [
 	^ ObjCLibrary
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TObjCLibrary >> ffiBindingOf: aName [
 	^ self class ffiBindingOf: aName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 TObjCLibrary >> ffiLibraryName [
 	^ ObjCLibrary
 ]

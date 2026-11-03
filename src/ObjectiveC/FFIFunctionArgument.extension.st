@@ -1,6 +1,6 @@
-Extension { #name : #FFIFunctionArgument }
+Extension { #name : 'FFIFunctionArgument' }
 
-{ #category : #'*ObjectiveC' }
+{ #category : '*ObjectiveC' }
 FFIFunctionArgument >> objCSignatureType [
 
 	^ self resolvedType objCSignatureType

@@ -1,11 +1,11 @@
-Extension { #name : #FFIExternalStructureType }
+Extension { #name : 'FFIExternalStructureType' }
 
-{ #category : #'*ObjectiveC' }
+{ #category : '*ObjectiveC' }
 FFIExternalStructureType >> isTypeStructure [
 	^ true
 ]
 
-{ #category : #'*ObjectiveC' }
+{ #category : '*ObjectiveC' }
 FFIExternalStructureType >> objCSignatureType [
 
 	^ '{', self objectClass name, '}'

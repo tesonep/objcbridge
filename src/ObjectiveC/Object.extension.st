@@ -1,5 +1,5 @@
-Extension { #name : #Object }
+Extension { #name : 'Object' }
 
-{ #category : #'*ObjectiveC' }
+{ #category : '*ObjectiveC' }
 Object >> adaptToObjC [
 ]

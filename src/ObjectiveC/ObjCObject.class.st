@@ -2,8 +2,8 @@
 I represent an Objective-C instance.
 "
 Class {
-	#name : #ObjCObject,
-	#superclass : #FFIExternalObject,
+	#name : 'ObjCObject',
+	#superclass : 'FFIExternalObject',
 	#traits : 'TObjCLibrary',
 	#classTraits : 'TObjCLibrary classTrait',
 	#instVars : [
@@ -12,50 +12,52 @@ Class {
 	#classVars : [
 		'OBJ_PTR'
 	],
-	#category : #'ObjectiveC-Core'
+	#category : 'ObjectiveC-Core',
+	#package : 'ObjectiveC',
+	#tag : 'Core'
 }
 
-{ #category : #finalization }
+{ #category : 'finalization' }
 ObjCObject class >> finalizeResourceData: handle [
 	handle isNull ifTrue: [ ^ self ].
 	(ObjCObject fromHandle: handle) release.
 	handle asExternalAddress beNull
 ]
 
-{ #category : #libraries }
+{ #category : 'libraries' }
 ObjCObject class >> lookup: symbol inLibrary: libraryName [
 	^ self loadSymbol: symbol module: libraryName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCObject class >> nil [ 
 	"ObjC uses nil as NULL"
 	^ self null
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCObject >> class: aClass getInstanceMethod: aName [
 	^ self ffiCall: #(Method class_getInstanceMethod(Class aClass, SEL aName))
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCObject >> descriptionString [ 
 	^ self description UTF8String
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCObject >> doGetInstanceVariable: aName in: returnValue [
 	
 	self ffiCall: #(void* object_getInstanceVariable(self, char * aName, void* returnValue))
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCObject >> doSetInstanceVariable: aName to: aValue [
 	
 	self ffiCall: #(void* object_setInstanceVariable(self, char * aName, void* aValue))
 ]
 
-{ #category : #'reflective operations' }
+{ #category : 'reflective operations' }
 ObjCObject >> doesNotUnderstand: aMessage [
 	| shadowMethod arguments |
 
@@ -67,7 +69,7 @@ ObjCObject >> doesNotUnderstand: aMessage [
 		arguments: arguments
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCObject >> getInstanceVariable: aName [
 
 	| returnValue |
@@ -79,27 +81,27 @@ ObjCObject >> getInstanceVariable: aName [
 	^ ObjCObject fromHandle: returnValue value.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCObject >> innerStructure [
 	"The inner structure from this object"
 	^ ObjCObjectStructure fromHandle: (self getHandle asExternalAddress pointerAt: 1) asExternalAddress
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCObject >> installMethodAt: aSelector implementation: aMethod [
 	^ self isa
 		methodAt: aSelector
 		put: aMethod
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCObject >> installedMethodAt: aSelector [
 	^ self isa
 		methodAt: aSelector 
 		ifAbsent: [ nil ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCObject >> installedMethodForMessage: aMessage sender: aContext [
 	| method objCMethod |
 
@@ -121,7 +123,7 @@ ObjCObject >> installedMethodForMessage: aMessage sender: aContext [
 			yourself)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCObject >> isa [
 	^ isa ifNil: [
 		| classHandle |
@@ -136,25 +138,25 @@ ObjCObject >> isa [
 			ifAbsentPut: [ inner isa ] ]"
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCObject >> objCMethodForSelector: aSelector [
 	^ self 
 		class: self isa
 		getInstanceMethod: aSelector asObjCSelector
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCObject >> objCPerform: aSEL [
 	^ self ffiCall: #(id objc_msgSend(self, SEL aSEL))
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCObject >> release [
 
 	self objCPerform: #release asObjCSelector
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCObject >> setInstanceVariable: aName to: aValue [
 
 	self doSetInstanceVariable: aName to: aValue.

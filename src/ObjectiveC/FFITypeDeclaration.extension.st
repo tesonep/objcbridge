@@ -1,6 +1,6 @@
-Extension { #name : #FFITypeDeclaration }
+Extension { #name : 'FFITypeDeclaration' }
 
-{ #category : #'*ObjectiveC' }
+{ #category : '*ObjectiveC' }
 FFITypeDeclaration >> objCSignatureType [
 
 	^ self resolvedType objCSignatureType

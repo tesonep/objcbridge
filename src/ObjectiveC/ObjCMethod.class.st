@@ -2,19 +2,21 @@
 I represent an Objective-C method definition.
 "
 Class {
-	#name : #ObjCMethod,
-	#superclass : #FFIExternalObject,
+	#name : 'ObjCMethod',
+	#superclass : 'FFIExternalObject',
 	#traits : 'TObjCLibrary',
 	#classTraits : 'TObjCLibrary classTrait',
-	#category : #'ObjectiveC-Core'
+	#category : 'ObjectiveC-Core',
+	#package : 'ObjectiveC',
+	#tag : 'Core'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCMethod >> argumentType: index [
 	^ self ffiCall: #(char *method_copyArgumentType(self, uint index))
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCMethod >> argumentTypes [
 	| types numArgs |
 	numArgs := self numArgs.
@@ -23,22 +25,22 @@ ObjCMethod >> argumentTypes [
 	^ types contents
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCMethod >> method_getName [
 	^ self ffiCall: #(SEL method_getName(self))
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCMethod >> name [
 	^ self method_getName name
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCMethod >> numArgs [
 	^ self ffiCall: #(uint method_getNumberOfArguments(self))
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCMethod >> returnType [
 	^ self ffiCall: #(char *method_copyReturnType(self))
 ]

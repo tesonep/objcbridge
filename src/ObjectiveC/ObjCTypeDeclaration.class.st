@@ -3,12 +3,14 @@ I'm a type declaration for ObjC functions.
 I'm needed because when matching ObjC functions I already have all needed data, so I can skip the resolution of type.
 "
 Class {
-	#name : #ObjCTypeDeclaration,
-	#superclass : #FFITypeDeclaration,
-	#category : #'ObjectiveC-Builder'
+	#name : 'ObjCTypeDeclaration',
+	#superclass : 'FFITypeDeclaration',
+	#category : 'ObjectiveC-Builder',
+	#package : 'ObjectiveC',
+	#tag : 'Builder'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ObjCTypeDeclaration class >> newType: aResolvedType [
 
 	^ self new 
@@ -16,13 +18,13 @@ ObjCTypeDeclaration class >> newType: aResolvedType [
 		yourself
 ]
 
-{ #category : #'emitting code' }
+{ #category : 'emitting code' }
 ObjCTypeDeclaration >> emitArgument: anIRBuilder context: aContext inCallout: aCallout [
 
 	self resolvedType emitArgument: anIRBuilder context: aContext inCallout: aCallout
 ]
 
-{ #category : #'emitting code' }
+{ #category : 'emitting code' }
 ObjCTypeDeclaration >> emitReturnArgument: anIRBuilder context: aContext [
 
 	self resolvedType
@@ -30,30 +32,30 @@ ObjCTypeDeclaration >> emitReturnArgument: anIRBuilder context: aContext [
 		context: aContext
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 ObjCTypeDeclaration >> isTypeFloat [
 	
 	^ self resolvedType isTypeFloat
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 ObjCTypeDeclaration >> isTypeStructure [
 	
 	^ self resolvedType isTypeStructure
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCTypeDeclaration >> loader: aLoader [
 	
 	self resolvedType loader: aLoader
 ]
 
-{ #category : #resolution }
+{ #category : 'resolution' }
 ObjCTypeDeclaration >> resolveUsing: aRequestor [
 	"not used, I already solved it"
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCTypeDeclaration >> resolvedType: aResolvedType [
 
 	resolvedType := aResolvedType

@@ -1,16 +1,16 @@
-Extension { #name : #FFIExternalType }
+Extension { #name : 'FFIExternalType' }
 
-{ #category : #'*ObjectiveC' }
+{ #category : '*ObjectiveC' }
 FFIExternalType >> isTypeFloat [
 	^ false
 ]
 
-{ #category : #'*ObjectiveC' }
+{ #category : '*ObjectiveC' }
 FFIExternalType >> isTypeStructure [
 	^ false
 ]
 
-{ #category : #'*ObjectiveC' }
+{ #category : '*ObjectiveC' }
 FFIExternalType >> objCSignatureType [
 
 	^ ObjCSpecParser reverseType: self class

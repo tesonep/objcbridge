@@ -1,10 +1,12 @@
 Class {
-	#name : #ObjCBlockFunction,
-	#superclass : #FFICallback,
-	#category : #'ObjectiveC-Core'
+	#name : 'ObjCBlockFunction',
+	#superclass : 'FFICallback',
+	#category : 'ObjectiveC-Core',
+	#package : 'ObjectiveC',
+	#tag : 'Core'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ObjCBlockFunction >> signature: signature block: aBlock [
 	| parser |
 
@@ -17,7 +19,7 @@ ObjCBlockFunction >> signature: signature block: aBlock [
 	block := aBlock
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 ObjCBlockFunction >> valueWithArguments: args [
 
 	^ block valueWithArguments: args allButFirst

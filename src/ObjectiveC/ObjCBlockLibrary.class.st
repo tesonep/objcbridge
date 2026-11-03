@@ -1,16 +1,18 @@
 Class {
-	#name : #ObjCBlockLibrary,
-	#superclass : #FFILibrary,
-	#category : #'ObjectiveC-Core'
+	#name : 'ObjCBlockLibrary',
+	#superclass : 'FFILibrary',
+	#category : 'ObjectiveC-Core',
+	#package : 'ObjectiveC',
+	#tag : 'Core'
 }
 
-{ #category : #converting }
+{ #category : 'converting' }
 ObjCBlockLibrary >> calloutAPIClass [
 
 	^ TFCalloutAPI
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 ObjCBlockLibrary >> runner [
 
 	^ TFWorker default

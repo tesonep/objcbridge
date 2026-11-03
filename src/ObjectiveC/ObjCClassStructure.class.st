@@ -4,8 +4,8 @@ I'm a Objective-C class structure.
 https://opensource.apple.com/source/objc4/objc4-237/runtime/objc-class.h.auto.html
 "
 Class {
-	#name : #ObjCClassStructure,
-	#superclass : #ObjCStructure,
+	#name : 'ObjCClassStructure',
+	#superclass : 'ObjCStructure',
 	#classVars : [
 		'OFFSET_CACHE',
 		'OFFSET_INFO',
@@ -18,10 +18,12 @@ Class {
 		'OFFSET_SUPER_CLASS',
 		'OFFSET_VERSION'
 	],
-	#category : #'ObjectiveC-Inner'
+	#category : 'ObjectiveC-Inner',
+	#package : 'ObjectiveC',
+	#tag : 'Inner'
 }
 
-{ #category : #'field definition' }
+{ #category : 'field definition' }
 ObjCClassStructure class >> fieldsDesc [
 "struct objc_class {
     struct objc_class *isa;
@@ -54,121 +56,121 @@ ObjCClassStructure class >> fieldsDesc [
 )
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 ObjCClassStructure >> cache [
 	"This method was automatically generated"
 	^ExternalData fromHandle: (handle pointerAt: OFFSET_CACHE) type: ExternalType void asPointerType
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 ObjCClassStructure >> cache: anObject [
 	"This method was automatically generated"
 	handle pointerAt: OFFSET_CACHE put: anObject getHandle.
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 ObjCClassStructure >> info [
 	"This method was automatically generated"
 	^handle platformLongAt: OFFSET_INFO
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 ObjCClassStructure >> info: anObject [
 	"This method was automatically generated"
 	^handle platformLongAt: OFFSET_INFO put: anObject
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 ObjCClassStructure >> instance_size [
 	"This method was automatically generated"
 	^handle platformLongAt: OFFSET_INSTANCE_SIZE
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 ObjCClassStructure >> instance_size: anObject [
 	"This method was automatically generated"
 	^handle platformLongAt: OFFSET_INSTANCE_SIZE put: anObject
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 ObjCClassStructure >> isa [
 	"This method was automatically generated"
 	^ObjCClass fromHandle: (handle pointerAt: OFFSET_ISA)
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 ObjCClassStructure >> isa: anObject [
 	"This method was automatically generated"
 	handle pointerAt: OFFSET_ISA put: anObject getHandle.
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 ObjCClassStructure >> ivars [
 	"This method was automatically generated"
 	^ExternalData fromHandle: (handle pointerAt: OFFSET_IVARS) type: ExternalType void asPointerType
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 ObjCClassStructure >> ivars: anObject [
 	"This method was automatically generated"
 	handle pointerAt: OFFSET_IVARS put: anObject getHandle.
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 ObjCClassStructure >> methodLists [
 	"This method was automatically generated"
 	^ExternalData fromHandle: (handle pointerAt: OFFSET_METHODLISTS) type: ExternalType void asPointerType
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 ObjCClassStructure >> methodLists: anObject [
 	"This method was automatically generated"
 	handle pointerAt: OFFSET_METHODLISTS put: anObject getHandle.
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 ObjCClassStructure >> name [
 	"This method was automatically generated"
 	^ExternalData fromHandle: (handle pointerAt: OFFSET_NAME) type: ExternalType char asPointerType
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 ObjCClassStructure >> name: anObject [
 	"This method was automatically generated"
 	handle pointerAt: OFFSET_NAME put: anObject getHandle.
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 ObjCClassStructure >> protocols [
 	"This method was automatically generated"
 	^ExternalData fromHandle: (handle pointerAt: OFFSET_PROTOCOLS) type: ExternalType void asPointerType
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 ObjCClassStructure >> protocols: anObject [
 	"This method was automatically generated"
 	handle pointerAt: OFFSET_PROTOCOLS put: anObject getHandle.
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 ObjCClassStructure >> super_class [
 	"This method was automatically generated"
 	^ObjCClass fromHandle: (handle pointerAt: OFFSET_SUPER_CLASS)
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 ObjCClassStructure >> super_class: anObject [
 	"This method was automatically generated"
 	handle pointerAt: OFFSET_SUPER_CLASS put: anObject getHandle.
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 ObjCClassStructure >> version [
 	"This method was automatically generated"
 	^handle platformLongAt: OFFSET_VERSION
 ]
 
-{ #category : #'accessing structure variables' }
+{ #category : 'accessing structure variables' }
 ObjCClassStructure >> version: anObject [
 	"This method was automatically generated"
 	^handle platformLongAt: OFFSET_VERSION put: anObject

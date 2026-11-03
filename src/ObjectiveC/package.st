@@ -1,1 +1,1 @@
-Package { #name : #ObjectiveC }
+Package { #name : 'ObjectiveC' }

@@ -1,6 +1,6 @@
 Class {
-	#name : #ObjCExternalBlock,
-	#superclass : #Object,
+	#name : 'ObjCExternalBlock',
+	#superclass : 'Object',
 	#traits : 'TObjCLibrary',
 	#classTraits : 'TObjCLibrary classTrait',
 	#instVars : [
@@ -8,10 +8,12 @@ Class {
 		'functionSpec',
 		'block'
 	],
-	#category : #'ObjectiveC-Core'
+	#category : 'ObjectiveC-Core',
+	#package : 'ObjectiveC',
+	#tag : 'Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ObjCExternalBlock class >> fromHandle: anExternalAddress signature: aCollection [ 
 	
 	^ self new
@@ -20,7 +22,7 @@ ObjCExternalBlock class >> fromHandle: anExternalAddress signature: aCollection 
 
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ObjCExternalBlock >> fromHandle: anExternalAddress signature: aCollection [ 
  
 	| requestor |
@@ -39,7 +41,7 @@ ObjCExternalBlock >> fromHandle: anExternalAddress signature: aCollection [
 	functionSpec resolveUsing: requestor
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ObjCExternalBlock >> valueWithArguments: arguments [
 
 	| fun |

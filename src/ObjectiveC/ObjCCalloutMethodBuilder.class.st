@@ -2,15 +2,17 @@
 I'm a callout builder for Objective-C methods.
 "
 Class {
-	#name : #ObjCCalloutMethodBuilder,
-	#superclass : #FFICalloutMethodBuilder,
+	#name : 'ObjCCalloutMethodBuilder',
+	#superclass : 'FFICalloutMethodBuilder',
 	#instVars : [
 		'message'
 	],
-	#category : #'ObjectiveC-Builder'
+	#category : 'ObjectiveC-Builder',
+	#package : 'ObjectiveC',
+	#tag : 'Builder'
 }
 
-{ #category : #'builder api' }
+{ #category : 'builder api' }
 ObjCCalloutMethodBuilder class >> buildMethod: objCMethod message: aMessage sender: aContext [
 
 	^ self new 
@@ -22,20 +24,20 @@ ObjCCalloutMethodBuilder class >> buildMethod: objCMethod message: aMessage send
 		buildMethod: objCMethod
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCCalloutMethodBuilder >> adaptSpecToReturnType: aSpec [
 
 	aSpec functionName: (self msgSendFunctionForReturnType: aSpec returnType)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCCalloutMethodBuilder >> argumentNames [
 
 	^ self message arguments 
 		withIndexCollect: [ :each :index | 'arg', index printString ]
 ]
 
-{ #category : #'builder api' }
+{ #category : 'builder api' }
 ObjCCalloutMethodBuilder >> buildMethod: objCMethod [
 	| spec argumentNames |
 	
@@ -57,13 +59,13 @@ ObjCCalloutMethodBuilder >> buildMethod: objCMethod [
 	^ self generateMethodFromSpec: spec
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCCalloutMethodBuilder >> callType [
 
 	^ 0 "cdecl"
 ]
 
-{ #category : #'private factory' }
+{ #category : 'private factory' }
 ObjCCalloutMethodBuilder >> createFFICalloutLiteralFromSpec: spec [
 	| externalFunction return arguments |
 	
@@ -86,13 +88,13 @@ ObjCCalloutMethodBuilder >> createFFICalloutLiteralFromSpec: spec [
 	^ externalFunction
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCCalloutMethodBuilder >> generateFFICallout: builder spec: functionSpec [
 	| properties |
 
 	"Copy the properties of the old method"
 	sender compiledCode ifNotNil: [ :compiledCode |
-		compiledCode properties ifNotNil: [ 
+		compiledCode hasProperties ifTrue: [ 
 			properties := compiledCode properties copy.
 			properties method: nil.
 			builder properties: properties ] ].
@@ -152,7 +154,7 @@ ObjCCalloutMethodBuilder >> generateFFICallout: builder spec: functionSpec [
 		inCallout: self requestor
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCCalloutMethodBuilder >> generateMethodFromSpec: spec [
 	| ir |
 
@@ -161,25 +163,25 @@ ObjCCalloutMethodBuilder >> generateMethodFromSpec: spec [
 	^ ir generate
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCCalloutMethodBuilder >> libraryName [
 
 	^ ObjCLibrary uniqueInstance libraryName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCCalloutMethodBuilder >> message [
 
 	^ message
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCCalloutMethodBuilder >> message: aMessage [
 
 	message := aMessage
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCCalloutMethodBuilder >> msgSendFunctionForReturnType: aType [
 
 	aType isTypeStructure ifTrue: [ ^ 'objc_msgSend_stret' ].

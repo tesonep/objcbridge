@@ -5,14 +5,16 @@ Tipically, classes, methods and selectors in Objective-C are no more than struct
 Anyway, we have access to those structures and sometimes is useful to economise calls (we should not abuse it anyway)
 "
 Class {
-	#name : #ObjCStructure,
-	#superclass : #FFIExternalStructure,
+	#name : 'ObjCStructure',
+	#superclass : 'FFIExternalStructure',
 	#traits : 'TObjCLibrary',
 	#classTraits : 'TObjCLibrary classTrait',
-	#category : #'ObjectiveC-Inner'
+	#category : 'ObjectiveC-Inner',
+	#package : 'ObjectiveC',
+	#tag : 'Inner'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCStructure class >> ffiStructureAliasOf: aName [
 	^ self structureAliases 
 		detect: [ :each | each = aName ]
@@ -20,7 +22,7 @@ ObjCStructure class >> ffiStructureAliasOf: aName [
 		ifNone: [ nil ]
 ]
 
-{ #category : #'field definition' }
+{ #category : 'field definition' }
 ObjCStructure class >> structureAliases [
 	^ #()
 ]

@@ -1,6 +1,6 @@
-Extension { #name : #ByteSymbol }
+Extension { #name : 'ByteSymbol' }
 
-{ #category : #'*ObjectiveC' }
+{ #category : '*ObjectiveC' }
 ByteSymbol >> asObjCSelector [
 	^ ObjCSelector register: self
 ]

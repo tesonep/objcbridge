@@ -1,6 +1,6 @@
-Extension { #name : #ExternalData }
+Extension { #name : 'ExternalData' }
 
-{ #category : #'*ObjectiveC' }
+{ #category : '*ObjectiveC' }
 ExternalData >> asExternalAddress [
 	^ self getHandle
 ]

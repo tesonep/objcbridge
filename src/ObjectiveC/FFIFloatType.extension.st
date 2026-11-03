@@ -1,6 +1,6 @@
-Extension { #name : #FFIFloatType }
+Extension { #name : 'FFIFloatType' }
 
-{ #category : #'*ObjectiveC' }
+{ #category : '*ObjectiveC' }
 FFIFloatType >> isTypeFloat [
 	^ false
 ]

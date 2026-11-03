@@ -2,8 +2,8 @@
 I define a class that will be installed in ObjC and will work as a proxy between ObjC and Pharo
 "
 Class {
-	#name : #ObjCProxyClass,
-	#superclass : #Object,
+	#name : 'ObjCProxyClass',
+	#superclass : 'Object',
 	#traits : 'TObjCLibrary',
 	#classTraits : 'TObjCLibrary classTrait',
 	#instVars : [
@@ -12,47 +12,49 @@ Class {
 		'instances',
 		'callbacks'
 	],
-	#category : #'ObjectiveC-Proxy'
+	#category : 'ObjectiveC-Proxy',
+	#package : 'ObjectiveC',
+	#tag : 'Proxy'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCProxyClass class >> classFor: aClass [
 	^ self classFor: aClass withSuperclass: 'NSObject'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCProxyClass class >> classFor: aClass withSuperclass: superclassName [
 	^ ObjCSessionCache current
 		proxyAt: aClass name
 		ifAbsentPut: [ self createProxyFor: aClass superclass: superclassName ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCProxyClass class >> createProxyFor: aClass superclass: superclassName [
 	^self basicNew 
 		initializeClass: aClass superclass: superclassName;
 		yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ObjCProxyClass class >> newFor: anObject [ 
 	^(self classFor: anObject class) newFor: anObject
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ObjCProxyClass class >> newFor: anObject withSuperclass: superclassName [
 	^ (self classFor: anObject class withSuperclass: superclassName)
 		newFor: anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCProxyClass class >> reinstallClassFor: aClass [
 	| currentProxyClass |
 	currentProxyClass := ObjCSessionCache current proxyAt: aClass name.
 	currentProxyClass rebuildMethodList.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCProxyClass >> addMethod: aSelector signature: aStringOrArray in: theClass [
 	| callback |
 	
@@ -65,7 +67,7 @@ ObjCProxyClass >> addMethod: aSelector signature: aStringOrArray in: theClass [
 		signature: (self newParser signatureToObjC: aStringOrArray)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCProxyClass >> addMethodPragma: aPragma in: theClass [
 	self 
 		addMethod: aPragma method selector 
@@ -73,7 +75,7 @@ ObjCProxyClass >> addMethodPragma: aPragma in: theClass [
 		in: theClass 	
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ObjCProxyClass >> alloc [
 	| proxy instance |
 	
@@ -85,17 +87,17 @@ ObjCProxyClass >> alloc [
 	^ instance
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCProxyClass >> class: cls respondsToSelector: sel [
 	^ self ffiCall: #(BOOL class_respondsToSelector(Class cls, SEL sel))
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCProxyClass >> class_addMethodClass: cls selector: name implementation: imp signature: types [
 	^ self ffiCall: #(BOOL class_addMethod(Class cls, SEL name, IMP imp, const char *types))
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCProxyClass >> createCallbackFor: aSelector signature: aString [
 
 	^ ObjCProxyCallback
@@ -107,7 +109,7 @@ ObjCProxyClass >> createCallbackFor: aSelector signature: aString [
 				withArguments: args ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCProxyClass >> createClassNamed: className superclass: superclassName  into: binaryBlock [
 	"WARNING we assume we have runtime2 here. If that's not the case, this will fail"
 	| newProxyClass  |
@@ -130,13 +132,13 @@ ObjCProxyClass >> createClassNamed: className superclass: superclassName  into: 
 	^ newProxyClass
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCProxyClass >> findInstance: address [
 
 	^ instances detect: [ :each | each proxy getHandle = address ].
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCProxyClass >> forkError: ex do: handlerAction [
 	"Activate the receiver. In case of exception, fork a new process, which will handle an error.
 	An original process will continue running as if receiver evaluation finished and answered nil,
@@ -177,7 +179,7 @@ ObjCProxyClass >> forkError: ex do: handlerAction [
 	thisContext privSender: thisCtx
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ObjCProxyClass >> initializeClass: aClass superclass: superclassName [
 	self initialize.
 	receiverClass := aClass.
@@ -187,7 +189,7 @@ ObjCProxyClass >> initializeClass: aClass superclass: superclassName [
 	proxyClass := self proxyClassName inObjC.
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCProxyClass >> installProxyClassWithSuperclass: superclassName [
 	"Installs a new SmalltalkProxy class in the system. 
 	 ProxyCallbacks  is a class side attribute to keep the callbacks and prevent them from being 
@@ -204,12 +206,12 @@ ObjCProxyClass >> installProxyClassWithSuperclass: superclassName [
 				do: [ :each | self addMethodPragma: each in: theClass ] ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ObjCProxyClass >> new [ 
 	^self newFor: nil
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 ObjCProxyClass >> newFor: anObject [ 
 	| proxy instance |
 
@@ -221,40 +223,40 @@ ObjCProxyClass >> newFor: anObject [
 	^ instance
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCProxyClass >> newParser [
 	^ ObjCSpecParser new
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCProxyClass >> objc_allocateClassPairSuperclass: superclass name: name extraBytes: extraBytes [
 	^ self ffiCall: #(Class objc_allocateClassPair(Class superclass, const char *name, size_t extraBytes))
 	
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCProxyClass >> objc_registerClassPair: cls [
 	self ffiCall: #(void objc_registerClassPair(Class cls))
 	
 	
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 ObjCProxyClass >> printOn: aStream [ 
 	aStream << self proxyClassName
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCProxyClass >> proxyClass [
 	^ proxyClass
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCProxyClass >> proxyClassName [
 	^ 'PharoProxyFor', self receiverClass name
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCProxyClass >> rebuildMethodList [
 	"We cannot remove methods from a class... we just add the new ones"
 	(Pragma allNamed: #objCSignature: in: self receiverClass)
@@ -265,12 +267,12 @@ ObjCProxyClass >> rebuildMethodList [
 		thenDo: [ :each | self addMethodPragma: each in: self proxyClass ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCProxyClass >> receiverClass [ 
 	^ receiverClass
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCProxyClass >> sendTo: receiver selector: aSelector withArguments: args [
 	| proxyReceiver |
 	

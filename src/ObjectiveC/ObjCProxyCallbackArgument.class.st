@@ -18,20 +18,22 @@ To match a regular send, we need to add this arguments to the callback, but they
 
 "
 Class {
-	#name : #ObjCProxyCallbackArgument,
-	#superclass : #FFIFunctionArgument,
+	#name : 'ObjCProxyCallbackArgument',
+	#superclass : 'FFIFunctionArgument',
 	#traits : 'TObjCLibrary',
 	#classTraits : 'TObjCLibrary classTrait',
-	#category : #'ObjectiveC-Proxy'
+	#category : 'ObjectiveC-Proxy',
+	#package : 'ObjectiveC',
+	#tag : 'Proxy'
 }
 
-{ #category : #resolution }
+{ #category : 'resolution' }
 ObjCProxyCallbackArgument >> asOldArraySpec [
 
 	^ #()
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ObjCProxyCallbackArgument >> initialize [
 
 	super initialize.
@@ -40,12 +42,12 @@ ObjCProxyCallbackArgument >> initialize [
 		yourself)
 ]
 
-{ #category : #resolution }
+{ #category : 'resolution' }
 ObjCProxyCallbackArgument >> resolveUsing: aResolver [
 	"Do nothing"
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 ObjCProxyCallbackArgument >> resolvedType [
 
 	^ type resolvedType

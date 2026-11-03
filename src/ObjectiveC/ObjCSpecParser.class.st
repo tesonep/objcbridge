@@ -2,8 +2,8 @@
 I can parse an ObjCMethod (taking arguments and signature) to produce a FFIFunctionSpec instance (that will later be translated to an UFFI call)
 "
 Class {
-	#name : #ObjCSpecParser,
-	#superclass : #Object,
+	#name : 'ObjCSpecParser',
+	#superclass : 'Object',
 	#traits : 'TObjCLibrary',
 	#classTraits : 'TObjCLibrary classTrait',
 	#instVars : [
@@ -14,15 +14,17 @@ Class {
 		'ReversedMethodTypeMap',
 		'TypeQualifiers'
 	],
-	#category : #'ObjectiveC-Builder'
+	#category : 'ObjectiveC-Builder',
+	#package : 'ObjectiveC',
+	#tag : 'Builder'
 }
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 ObjCSpecParser class >> initialize [
 	self initializeMethodTypeMap
 ]
 
-{ #category : #'class initialization' }
+{ #category : 'class initialization' }
 ObjCSpecParser class >> initializeMethodTypeMap [
 	MethodTypeMap := IdentityDictionary new: 32.
 	MethodTypeMap
@@ -92,12 +94,12 @@ ObjCSpecParser class >> initializeMethodTypeMap [
 	TypeQualifiers := 'nNoOrRV!'.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 ObjCSpecParser class >> reverseType: aTypeClass [
 	^ ReversedMethodTypeMap at: aTypeClass
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 ObjCSpecParser >> ffiInstVarArgument: argName generator: generator [
 	"Load the instance variable with given name. 
 	 It will be ignored anyway in a callback" 
@@ -106,17 +108,17 @@ ObjCSpecParser >> ffiInstVarArgument: argName generator: generator [
 		yourself
 ]
 
-{ #category : #'private testing' }
+{ #category : 'private testing' }
 ObjCSpecParser >> isObject: ch [
 	^ ch = $@
 ]
 
-{ #category : #'private testing' }
+{ #category : 'private testing' }
 ObjCSpecParser >> isStructure: ch [
 	^ ch = ${
 ]
 
-{ #category : #'private factory' }
+{ #category : 'private factory' }
 ObjCSpecParser >> newFunctionParser [
 	^ FFIFunctionParser new
 		requestor: (FFICallout new
@@ -125,7 +127,7 @@ ObjCSpecParser >> newFunctionParser [
 		yourself
 ]
 
-{ #category : #'private parsing' }
+{ #category : 'private parsing' }
 ObjCSpecParser >> nextStructure: aStream [
 
 	^ ObjCTypeDeclaration newType: (FFICallout new 
@@ -133,7 +135,7 @@ ObjCSpecParser >> nextStructure: aStream [
 		resolveType: (aStream upTo: $=))
 ]
 
-{ #category : #'private parsing' }
+{ #category : 'private parsing' }
 ObjCSpecParser >> nextType: aStream [
 	| ch |
 
@@ -148,7 +150,7 @@ ObjCSpecParser >> nextType: aStream [
 		resolveType: (MethodTypeMap at: ch))
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 ObjCSpecParser >> parseMethod: anObjCMethod [
 
 	^ FFIFunctionSpec new
@@ -159,7 +161,7 @@ ObjCSpecParser >> parseMethod: anObjCMethod [
 	
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 ObjCSpecParser >> parseObjCSignature: aString [
 	"methods signature is always: return type, object, selector, ..."
 	| signatureStream arguments |
@@ -175,7 +177,7 @@ ObjCSpecParser >> parseObjCSignature: aString [
 		yourself
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 ObjCSpecParser >> parseSignature: signature [
 	| spec parser |
 	
@@ -187,12 +189,12 @@ ObjCSpecParser >> parseSignature: signature [
 	^ spec
 ]
 
-{ #category : #'private parsing' }
+{ #category : 'private parsing' }
 ObjCSpecParser >> parseType: aString [
 	^ self nextType: aString readStream
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 ObjCSpecParser >> reverseParseSignature: spec [
 	^ String streamContents: [ :aStream |
 		aStream << spec returnType objCSignatureType.
@@ -200,7 +202,7 @@ ObjCSpecParser >> reverseParseSignature: spec [
 			do: [ :each | aStream << each objCSignatureType ] ].
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 ObjCSpecParser >> signatureToObjC: anArray [
 	^ self reverseParseSignature: (self parseSignature: anArray)
 ]

@@ -2,6 +2,7 @@ Extension { #name : 'String' }
 
 { #category : '*ObjectiveC-Cocoa' }
 String >> asNSString [
+	<ignoreNotImplementedSelectors: #( #initWithUTF8String: )>
 
 	^ self
 		  ifNotEmpty: [

@@ -1,3 +1,6 @@
+"
+I represent a Cocoa menu target, i.e. the ObjectiveC object that will receive the callbacks.
+"
 Class {
 	#name : 'CocoaMenuTarget',
 	#superclass : 'Object',
@@ -22,7 +25,7 @@ CocoaMenuTarget >> block: anObject [
 	block := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : #execution }
 CocoaMenuTarget >> execute [
 	<objCSignature: #(void ())>
 
